@@ -1,4 +1,47 @@
 //-------------------------------------
+//PROBLEMA Nº 1
+//-------------------------------------
+/*Si enumeramos todos los números naturales debajo de 10 que son múltiplos de 3 o 5, 
+obtenemos 3, 5, 6 y 9. La suma de estos múltiplos es 23.
+Encuentra la suma de todos los múltiplos de 3 o 5 por debajo de 1000.*/
+
+function sumaDeMultiplos(cantidad){
+    let suma = 0;
+    for(let i = 0; i < cantidad; i++){
+        if(i % 3 == 0 || i % 5 == 0){
+            suma += i;
+        }
+    }
+    return suma;
+}
+
+console.log(sumaDeMultiplos(1000)); //233168
+
+//-------------------------------------
+//PROBLEMA Nº 2
+//-------------------------------------
+/*Cada nuevo término en la sucesión de Fibonacci se genera sumando los dos términos anteriores. 
+Al comenzar con 1 y 2, los primeros 10 términos serán: 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
+Al considerar los términos en la sucesión de Fibonacci cuyos valores no superan los cuatro millones, 
+encuentre la suma de los términos de valor par.*/
+
+function sumaFibonacci(valorCorte) {
+    let numeros = [1, 2];
+    let suma = 0;
+    for(let i = 1; i < Number.MAX_SAFE_INTEGER; i++) {
+        let num = numeros[i] + numeros[i-1]
+        if(num >= valorCorte) break;
+        numeros.push(num);             
+    }
+    
+    for(item of numeros) if(item % 2 == 0) suma += item;
+
+    return suma;
+}
+
+console.log(sumaFibonacci(4000000)); //4613732
+
+//-------------------------------------
 //PROBLEMA Nº 3
 //-------------------------------------
 /*Los factores primos de 13195 son 5, 7, 13 y 29.
@@ -12,7 +55,7 @@ function esPrimo(num){
     return true;
 }
 //Versión simple (fuerza bruta)
-function mayorFactorPrimo(num){
+function mayorFactorPrimo1(num){
     let mayor = 0;
     for(let i = num-1; i >= 2; i--) {
         if(esPrimo(i) && num%i == 0){
@@ -23,7 +66,7 @@ function mayorFactorPrimo(num){
     return mayor;
 }
 //Versión larga (fuerza bruta)
-function mayorFactorPrimo(num){
+function mayorFactorPrimo2(num){
     let factoresPrimos = [];
     let mayor = 0;
     for(let i = 2; i < num; i++) {
@@ -35,8 +78,8 @@ function mayorFactorPrimo(num){
     return mayor;
 }
 
-let rta = mayorFactorPrimo(13195);
-console.log(rta);                        
+let rta1 = mayorFactorPrimo1(13195);
+console.log(rta1);                        
 
 //-------------------------------------
 //PROBLEMA Nº 4
@@ -114,8 +157,8 @@ function smallestMult(n){
     }
 }
 
-n = smallestMult(20);
-console.log(n); //232792560
+n2 = smallestMult(20);
+console.log(n2); //232792560
 
 //-------------------------------------
 //PROBLEMA Nº 6
@@ -139,7 +182,7 @@ function cuadradoDeSumas(n){
     return cuadrado;
 }
 
-let rts = cuadradoDeSumas(100) - sumaDeCuadrados(100);
+let rta2 = cuadradoDeSumas(100) - sumaDeCuadrados(100);
 
 console.log(rta); //25164150 
 
@@ -219,6 +262,4 @@ function biggestInt(array){
 }
 
 console.log(prodMasGrandeSerie(cadenon, 13)); //23514624000
-
-
 
