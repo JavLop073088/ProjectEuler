@@ -263,3 +263,27 @@ function biggestInt(array){
 
 console.log(prodMasGrandeSerie(cadenon, 13)); //23514624000
 
+//-------------------------------------
+//PROBLEMA Nº 9
+//-------------------------------------
+/*Un triplete pitagórico es un conjunto de tres números naturales, a < b < c , para los cuales,
+            a^2 + b^2 = c^2
+Existe exactamente un triplete pitagórico para el cual a + b + c = 1000.
+Encuentra el producto abc .*/
+
+function triplePitagorico(maximo){
+    for (let i=1; i <= maximo; i++) { 
+        for (let j=2; j <= maximo; j++) {
+            for (let k=3; k <= maximo; k++){
+                let suma = i + j + k;            
+                if( (suma == maximo) && (Math.pow(i, 2) + Math.pow(j, 2) == Math.pow(k, 2)) ){
+                    return i * j * k ;
+                }
+
+            }
+        }   
+    }
+}
+
+console.log(triplePitagorico(1000));
+
