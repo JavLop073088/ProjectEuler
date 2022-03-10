@@ -287,3 +287,42 @@ function triplePitagorico(maximo){
 
 console.log(triplePitagorico(1000));
 
+//-------------------------------------
+//PROBLEMA Nº 10
+//-------------------------------------
+/*La suma de los números primos por debajo de 10 es 2 + 3 + 5 + 7 = 17.
+Encuentra la suma de todos los números primos por debajo de dos millones. */
+
+function sumaDePrimos(tope){   
+    let suma = 0;  
+
+    for(let candidato = 2; candidato <= tope; candidato++){
+        let primo = true;
+        let maximoDivisor = Math.floor(Math.sqrt(candidato));
+
+        for(let divisor = 2; divisor <= maximoDivisor; divisor++){
+            if(candidato % divisor == 0){
+                primo = !primo;
+                break;
+            }
+        }
+        if(primo) suma += candidato;
+    }
+    return suma;
+}
+
+console.log(sumaDePrimos(2000000)); //142913828922
+
+/*
+Explicación
+Un número compuesto n, es cualquier número natural no primo, que puede ser escrito de la forma:
+
+    n = a * b; { con a y b distintos de 1 y además si a >= b  entonces b <= sqrt(n) y viceversa}
+    
+Esto significa que tanto a, como b (divisores de n) tienen un valor máximo que depende uno del otro.
+
+Entonces, no es necesario iterar todos los valores desde 2 hasta n buscando los posibles divisores de n,
+basta con iterar hasta la raíz cuadrada de n. Y como la misma no será exacta en la mayoría de los casos, 
+podemos prescindir de la parte decimal e iterar sólo hasta el entero más cercano por defecto.
+(Mauricio Contreras - stackoverflow)
+*/
